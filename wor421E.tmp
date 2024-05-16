@@ -1,0 +1,55 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsliuu2u7eckk"]
+
+[ext_resource type="Texture2D" uid="uid://c2ihsbyhgrduv" path="res://textures/marble_tiles_diff_1k.jpg" id="1_4ab1d"]
+[ext_resource type="Script" path="res://world.gd" id="1_grjmr"]
+[ext_resource type="Texture2D" uid="uid://cq2kiao5dvp1o" path="res://textures/marble_tiles_nor_gl_1k.jpg" id="2_j0038"]
+[ext_resource type="Texture2D" uid="uid://dxhvcval5oqok" path="res://textures/marble_tiles_rough_1k.jpg" id="3_2oaai"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_erd72"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lplt2"]
+albedo_texture = ExtResource("1_4ab1d")
+roughness_texture = ExtResource("3_2oaai")
+normal_enabled = true
+normal_texture = ExtResource("2_j0038")
+uv1_scale = Vector3(200, 200, 200)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a824q"]
+material = SubResource("StandardMaterial3D_lplt2")
+size = Vector2(400, 400)
+
+[node name="World" type="Node3D"]
+script = ExtResource("1_grjmr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, 0, 0, 0)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_erd72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("PlaneMesh_a824q")
+
+[node name="Character" type="Node3D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="SimpleBtn" type="Button" parent="Node2D"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Simple
+"
+
+[node name="TurningBtn" type="Button" parent="Node2D"]
+offset_left = 68.0
+offset_top = 1.0
+offset_right = 129.0
+offset_bottom = 32.0
+text = "Turning
+"
+
+[connection signal="pressed" from="Node2D/SimpleBtn" to="." method="_on_simple_btn_pressed"]
+[connection signal="pressed" from="Node2D/TurningBtn" to="." method="_on_turning_btn_pressed"]
