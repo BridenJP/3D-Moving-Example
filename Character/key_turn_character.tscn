@@ -1,32 +1,30 @@
 [gd_scene load_steps=4 format=3 uid="uid://bur1v3aytfi56"]
 
-[ext_resource type="Script" path="res://Character/turning_character.gd" id="1_ykxrg"]
-[ext_resource type="PackedScene" uid="uid://jgu3ra7tpn58" path="res://Models/3DGodotRobot.glb" id="2_sagaj"]
+[ext_resource type="Script" path="res://Character/key_turn_character.gd" id="1_f1txv"]
+[ext_resource type="PackedScene" uid="uid://jgu3ra7tpn58" path="res://Models/3DGodotRobot.glb" id="2_spnn1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_telln"]
 radius = 0.4
 height = 1.8
 
-[node name="TurningCharacter" type="CharacterBody3D"]
-script = ExtResource("1_ykxrg")
+[node name="KeyTurnCharacter" type="CharacterBody3D"]
+script = ExtResource("1_f1txv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_telln")
 
-[node name="Robot" parent="." instance=ExtResource("2_sagaj")]
+[node name="Robot" parent="." instance=ExtResource("2_spnn1")]
 transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 
 [node name="Skeleton3D" parent="Robot/RobotArmature" index="0"]
 bones/0/rotation = Quaternion(0.0149092, 1.19196e-07, 1.77731e-09, 0.999889)
 bones/0/scale = Vector3(1, 1, 1)
 bones/1/rotation = Quaternion(0.0294489, -1.52097e-14, 7.02117e-09, 0.999566)
-bones/1/scale = Vector3(1, 1, 1)
 bones/2/rotation = Quaternion(-0.0535535, -2.38076e-07, -2.66836e-15, 0.998565)
 bones/3/rotation = Quaternion(-0.0083361, 1.19205e-07, 9.93739e-10, 0.999965)
 bones/3/scale = Vector3(1, 1, 1)
 bones/4/rotation = Quaternion(0.00540027, -1.19208e-07, -6.43763e-10, 0.999985)
-bones/4/scale = Vector3(1, 1, 1)
 bones/5/rotation = Quaternion(0.00821238, -4.94291e-14, -1.95798e-09, 0.999966)
 bones/8/rotation = Quaternion(0.00393964, 1.19208e-07, -4.69641e-10, 0.999992)
 bones/9/scale = Vector3(1, 1, 1)
